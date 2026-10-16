@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#faf3e5">
+  <meta name="description" content="ไปพักกันไหม ช่วยเลือกสวน อุทยาน ศูนย์กีฬา และยิมทั่วไทย ดูเวลาเปิด การเดินทาง และที่มาของข้อมูล ใช้ฟรี ไม่ต้องสมัครสมาชิก">
+  <title>ไปพักกันไหม — วันนี้ไปพักที่ไหนดี</title>
+  <!-- site icon: the owner's tree-and-bench logo, cropped to the drawing so it reads at tab size -->
+  <link rel="icon" href="./brand/icon-32.png" type="image/png" sizes="32x32">
+  <link rel="icon" href="./brand/icon-64.png" type="image/png" sizes="64x64">
+  <link rel="apple-touch-icon" href="./brand/apple-touch-icon.png">
+  <link rel="manifest" href="./site.webmanifest">
+  <!-- link previews in chat apps and social sites; when the site has its final address, set og:url and make og:image absolute -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="ไปพักกันไหม">
+  <meta property="og:title" content="ไปพักกันไหม (Pai Pak Kan Mai) — วันนี้ไปพักที่ไหนดี">
+  <meta property="og:description" content="ไปพักกันไหม ช่วยเลือกสวน อุทยาน ศูนย์กีฬา และยิมทั่วไทย ดูเวลาเปิด การเดินทาง และที่มาของข้อมูล ใช้ฟรี ไม่ต้องสมัครสมาชิก">
+  <meta property="og:image" content="./brand/og-image.jpg">
+  <meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="น้องน่องไม้โบกมือข้างข้อความ วันนี้ไปพักที่ไหนดี">
+  <meta property="og:locale" content="th_TH"><meta property="og:locale:alternate" content="en_US">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preload" href="./mascot/walk-strip.webp" as="image" type="image/webp">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@100;200;300;400;500;600;700&family=Manrope:wght@200..800&family=Noto+Sans+Thai:wght@100..900&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./vendor/leaflet.css"><link rel="stylesheet" href="./vendor/markercluster/MarkerCluster.css"><link rel="stylesheet" href="./style.css">
+  <script src="./vendor/leaflet.js" defer></script><script src="./vendor/markercluster/leaflet.markercluster.js" defer></script><script src="./app.js" type="module"></script>
+  <!-- loading screen: styled inline so it paints before style.css and the web fonts arrive; app.js fades it out -->
+  <style>
+    .splash{position:fixed;inset:0;z-index:9999;display:grid;place-items:center;align-content:center;gap:1.1rem;background:#faf3e5;color:#13271a;font-family:'IBM Plex Sans Thai','Noto Sans Thai',system-ui,sans-serif;transition:opacity .35s ease,visibility .35s ease}
+    /* backdrop: a small screenshot of the OSM map of central Bangkok (240px, blurred), so the map shows faintly at once */
+    .splash::before{content:"";position:absolute;inset:-48px;background:url(data:image/jpeg;base64,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) center/cover;filter:blur(7px) saturate(1.05)}
+    .splash::after{content:"";position:absolute;inset:0;background:radial-gradient(closest-side circle at 50% 50%,rgba(250,243,229,.88),rgba(250,243,229,.42) 65%,rgba(250,243,229,.12))}
+    .splash>*{position:relative;z-index:1}
+    .splash-credit{position:absolute!important;right:.75rem;bottom:.5rem;margin:0;font-size:.8125rem;color:#364e3e}
+    .splash.is-done{opacity:0;visibility:hidden;pointer-events:none}
+    /* the mascot (Nong Nong Mai) walks on the spot while the data loads: one 8-frame strip, stepped */
+    .splash-mark{--w:7.5rem;position:relative;width:var(--w);height:var(--w)}
+    .splash-walker{width:100%;height:100%;background:url(./mascot/walk-strip.webp) 0 0/800% 100% no-repeat;animation:splash-walk .85s steps(8) infinite}
+    .splash-ground{position:absolute;left:18%;right:18%;bottom:2%;height:.5rem;border-radius:50%;background:rgba(19,39,26,.12);z-index:-1}
+    .splash-name{margin:0;font-size:1.5rem;font-weight:700;letter-spacing:-.01em}
+    .splash-text{margin:-.6rem 0 0;font-size:.95rem;color:#364e3e}
+    @keyframes splash-walk{to{background-position:calc(var(--w) * -8) 0}}
+    /* reduced motion: a still wave instead of the walk */
+    @media (prefers-reduced-motion:reduce){.splash-walker{animation:none;background:url(./mascot/wave.webp) center/contain no-repeat}.splash{transition:none}}
+  </style>
+  <noscript><style>.splash{display:none}</style></noscript>
+</head>
+<body>
+  <div class="splash" id="splash" role="status" aria-live="polite">
+    <div class="splash-mark" aria-hidden="true"><span class="splash-ground"></span><div class="splash-walker"></div></div>
+    <p class="splash-name" lang="th">ไปพักกันไหม</p>
+    <p class="splash-credit" lang="en">© OpenStreetMap contributors</p>
+    <p class="splash-text" id="splash-text" data-en="Loading places…">กำลังโหลดสถานที่…</p>
+  </div>
+  <script>
+    // the saved language is applied by app.js later; set the loading line now so English visitors don't see Thai first
+    (()=>{let l=new URLSearchParams(location.search).get('lang');try{l=l||localStorage.getItem('paipak:lang');}catch{}
+      if(l==='en'){const p=document.getElementById('splash-text');p.textContent=p.dataset.en;p.lang='en';const n=document.querySelector('.splash-name');n.textContent='Pai Pak Kan Mai';n.lang='en';}
+      // never trap the page behind the loader if the app script fails to start
+      setTimeout(()=>document.getElementById('splash')?.classList.add('is-done'),15000);})();
+  </script>
+  <a class="skip" href="#results">ข้ามไปยังรายชื่อสถานที่</a>
+  <!-- App shell: a side panel to decide beside a full-height map. The panel has two tabs:
+       "แนะนำ" (the question, what to do, one pick) and "ทั้งหมด" (the list under a pinned filter bar).
+       On phones the panel and the map become views, switched from the bar at the bottom. -->
+  <div class="shell" data-view="list">
+    <section class="panel" aria-label="ค้นหาและเลือกสถานที่">
+      <header class="panel-head">
+        <div class="brand-row">
+          <a class="brand" href="./" aria-label="ไปพักกันไหม หน้าหลัก">
+            <img class="brand-mark" src="./brand/icon-64.png" srcset="./brand/icon-128.png 2x, ./brand/icon-256.png 3x" width="40" height="40" alt="" aria-hidden="true">
+            <span class="brand-name">ไปพักกันไหม</span>
+          </a>
+          <div class="lang-switch" role="group" aria-label="ภาษา / Language" data-no-i18n><button type="button" data-lang="th" lang="th" aria-pressed="true">ไทย</button><button type="button" data-lang="en" lang="en" aria-pressed="false">EN</button></div>
+          <nav aria-label="เมนูหลัก" id="main-nav" hidden>
+            <a class="nav-link" id="suggest-nav" href="#suggest">แนะนำสถานที่</a>
+          </nav>
+        </div>
+      </header>
+      <div class="panel-tools" id="panel-tools">
+        <form class="search" role="search" aria-label="ค้นหาสถานที่" onsubmit="return false">
+          <label class="field field-search"><span data-icon="search"></span><input id="search" type="search" autocomplete="off" placeholder="ค้นหาชื่อสวน ย่าน หรือสถานีรถไฟฟ้า" aria-label="ค้นหาชื่อสถานที่ ย่าน หรือสถานี"></label>
+        </form>
+        <div class="tabs" role="tablist" aria-label="มุมมองในแผง">
+          <button type="button" class="tab" role="tab" id="tab-pick" aria-controls="panel-pick" aria-selected="true">แนะนำ</button>
+          <button type="button" class="tab" role="tab" id="tab-list" aria-controls="results" aria-selected="false" tabindex="-1">ทั้งหมด <span class="tab-count" id="tab-count"></span></button>
+        </div>
+      </div>
+
+      <div class="panel-scroll" id="panel-scroll">
+        <section class="tab-panel pick-panel" id="panel-pick" role="tabpanel" aria-labelledby="tab-pick">
+          <div class="intro">
+            <!-- the mascot (Nong Nong Mai); its pose follows the time of day (syncDaypart in app.js) -->
+            <img class="mascot mascot-hero" id="hero-mascot" src="./mascot/wave.webp" alt="" width="96" height="96" aria-hidden="true">
+            <h1 id="hero-title" data-en='Where to <span class="accent">unwind</span> today?'>วันนี้ไป<span class="accent">พัก</span>ที่ไหนดี?</h1>
+            <p class="hero-lead">บอกว่าอยากทำอะไร แล้วเราช่วยเลือกให้ · ใช้ฟรี ไม่ต้องสมัคร</p>
+            <p class="coverage" id="coverage">มีข้อมูลทั่วประเทศ กรุงเทพฯ ละเอียดที่สุด ต่างจังหวัดส่วนใหญ่มาจาก OpenStreetMap</p>
+          </div>
+          <fieldset class="intents">
+            <legend>อยากทำอะไร</legend>
+            <div class="chip-rail"><div class="chip-scroll intent-list" data-intents></div></div>
+          </fieldset>
+          <div class="where-row"><span class="where-label">แถวไหน</span><button type="button" class="where-button" data-where aria-haspopup="dialog"><span data-icon="pin"></span><span class="where-text">ทุกที่</span><span class="caret" aria-hidden="true"></span></button></div>
+          <div class="active-filters" data-active="pick" hidden></div>
+          <aside class="pick" id="pick" aria-label="สถานที่ที่แนะนำตอนนี้" aria-live="polite"></aside>
+          <button type="button" class="see-all" data-goto-list>ดูทั้งหมด <span data-count></span> แห่ง <span data-icon="arrow"></span></button>
+        </section>
+
+        <section class="tab-panel results" id="results" role="tabpanel" aria-labelledby="tab-list" tabindex="-1" hidden>
+          <div class="list-bar" id="list-bar">
+            <div class="chip-rail"><div class="chip-scroll intent-list" data-intents role="group" aria-label="อยากทำอะไร"></div></div>
+            <div class="quick-row" role="group" aria-label="ตัวกรองหลัก">
+              <button type="button" class="where-button" data-where aria-haspopup="dialog"><span data-icon="pin"></span><span class="where-text">ทุกที่</span><span class="caret" aria-hidden="true"></span></button>
+              <label class="toggle"><input type="checkbox" id="open-only"><span id="open-only-label">เปิดอยู่</span></label>
+              <label class="toggle"><input type="checkbox" id="free-only"><span data-en="Free">เข้าฟรี</span></label>
+              <button type="button" class="filter-button" id="open-filters" aria-haspopup="dialog"><span data-icon="sliders"></span>ตัวกรอง<span class="filter-count" id="filter-count"></span></button>
+            </div>
+            <div class="active-filters" data-active="list" hidden></div>
+          </div>
+          <!-- typing a station name in the one search box offers it as a centre point -->
+          <div class="near-suggest" id="near-suggest" hidden></div>
+          <div class="results-heading">
+            <h2 class="sr" id="results-title">รายการสถานที่</h2>
+            <div><p id="result-count" aria-live="polite">กำลังโหลดสถานที่…</p><p class="coverage-note" id="coverage-note" hidden></p></div>
+            <label class="sort"><span class="sr">เรียงสถานที่</span><select id="sort"><option value="recommended">เหมาะกับตอนนี้</option><option value="distance">ใกล้ฉัน</option><option value="name">ชื่อ ก–ฮ</option></select></label>
+          </div>
+          <div id="place-list" class="place-list"></div>
+        </section>
+
+        <section class="suggest" id="suggest" aria-labelledby="suggest-title" hidden>
+          <div class="suggest-copy">
+            <h2 id="suggest-title">รู้จักที่ดี ๆ ที่ยังไม่อยู่ในแผนที่?</h2>
+            <p id="suggest-lead">ที่นี่ยังมีไม่ครบทุกที่ ช่วยกันเติมได้ หรือบอกเราถ้าข้อมูลไม่ตรงกับที่เห็นหน้างาน</p>
+          </div>
+          <form class="suggest-form" id="suggest-form">
+            <div class="seg" role="group" aria-label="เรื่องที่ต้องการแจ้ง"><button type="button" data-kind="new" aria-pressed="true">แนะนำสถานที่ใหม่</button><button type="button" data-kind="fix" aria-pressed="false">แจ้งข้อมูลผิด</button></div>
+            <label class="form-field"><span>ชื่อสถานที่</span><input name="name" required maxlength="120" autocomplete="off"></label>
+            <label class="form-field"><span>ย่าน / จังหวัด</span><input name="area" maxlength="120" autocomplete="off" placeholder="เช่น บางกะปิ กรุงเทพฯ"></label>
+            <label class="form-field form-wide"><span>ลิงก์แหล่งข้อมูล <small>(ไม่บังคับ)</small></span><input name="link" type="url" maxlength="300" inputmode="url" placeholder="https://"></label>
+            <label class="form-field form-wide"><span>รายละเอียด</span><textarea name="details" rows="3" maxlength="800" placeholder="เช่น เวลาเปิด ค่าเข้า หรือสิ่งที่ไม่ตรงกับในแผนที่"></textarea></label>
+            <div class="form-actions"><a class="btn btn-primary" id="suggest-mail" hidden>ส่งทางอีเมล</a><a class="btn btn-primary" id="suggest-form-link" target="_blank" rel="noopener" hidden>เปิดแบบฟอร์ม</a><button type="button" class="btn btn-ghost" id="suggest-copy">คัดลอกข้อความ</button></div>
+          </form>
+        </section>
+
+        <footer class="panel-foot">
+          <span id="checked-at">กำลังโหลดวันที่ตรวจข้อมูล…</span>
+          <div class="footer-links"><button type="button" id="data-info">ที่มาของข้อมูล</button><button type="button" id="privacy-info">ความเป็นส่วนตัว</button><button type="button" id="buddy-toggle">ซ่อนน้องน่องไม้</button></div>
+        </footer>
+      </div>
+    </section>
+
+    <section class="map-panel" aria-label="แผนที่สถานที่">
+      <div id="map" aria-label="แผนที่สถานที่พักผ่อนและออกกำลังกายในประเทศไทย"></div>
+      <button type="button" class="map-search" id="search-map-area">ค้นหาในบริเวณนี้</button>
+      <div class="point-picker" id="point-picker" hidden><p>เลื่อนแผนที่ให้กากบาทตรงจุดที่ต้องการ</p><div><button type="button" class="btn btn-primary btn-small" id="confirm-point">ใช้จุดกลางแผนที่</button><button type="button" class="btn btn-ghost btn-small" id="cancel-point">ยกเลิก</button></div></div>
+      <span class="map-crosshair" id="map-crosshair" hidden aria-hidden="true">+</span>
+      <div class="map-tools"><p class="daypart" id="daypart" title="เวลาในกรุงเทพฯ สีแผนที่เปลี่ยนตามช่วงเวลา"></p><button type="button" id="rail-toggle" aria-pressed="true" hidden><svg class="tool-mark" viewBox="0 0 22 10" aria-hidden="true"><path d="M1 5h20"/><circle cx="7" cy="5" r="2.6"/><circle cx="15" cy="5" r="2.6"/></svg>รถไฟฟ้า</button><button type="button" id="fit-map">ดูทุกที่</button><button type="button" id="map-locate">ตำแหน่งฉัน</button></div>
+      <details class="rail-legend" id="rail-legend" hidden><summary>สายรถไฟฟ้า</summary><ul id="rail-legend-list"></ul></details>
+      <ul class="map-legend" aria-label="สัญลักษณ์บนแผนที่"><li data-kind="park"><img class="key-img" src="icons/park.png" alt="">สวน</li><li data-kind="exercise"><img class="key-img" src="icons/exercise.svg" alt="">ศูนย์กีฬา</li><li data-kind="gym"><img class="key-img" src="icons/gym.png" alt="">ยิม</li><li id="legend-province" hidden><i class="key-province"></i><span></span></li></ul>
+      <div class="map-error" id="map-error" hidden>แผนที่โหลดไม่ได้ ลองตรวจสอบอินเทอร์เน็ต คุณยังเลือกสถานที่จากรายการและเปิดเส้นทางได้</div>
+    </section>
+
+    <nav class="view-switch" aria-label="สลับมุมมอง">
+      <button type="button" data-view="list" aria-pressed="true"><span data-icon="list"></span>รายการ <span class="view-count" id="view-count"></span></button>
+      <button type="button" data-view="map" aria-pressed="false"><span data-icon="map"></span>แผนที่</button>
+    </nav>
+  </div>
+  <dialog id="detail" class="place-dialog" aria-labelledby="detail-title"></dialog>
+  <!-- One place to say "where": near me, a point on the map, a named spot, or a province. Radius shows once a point is set. -->
+  <dialog id="area-dialog" class="area-dialog sheet" aria-labelledby="area-title">
+    <button type="button" class="dialog-close icon-button" id="close-area" aria-label="ปิดหน้าต่างเลือกพื้นที่">×</button>
+    <h2 id="area-title">ค้นหาแถวไหน</h2>
+    <div class="where-now" id="where-now" hidden>
+      <p id="nearby-summary" aria-live="polite"></p>
+      <fieldset class="radius-field" id="radius-field" hidden><legend>รัศมี (วัดเป็นเส้นตรง)</legend><div class="seg-row" id="radius"><label class="toggle"><input type="radio" name="radius" value="1"><span>1 กม.</span></label><label class="toggle"><input type="radio" name="radius" value="3"><span>3 กม.</span></label><label class="toggle"><input type="radio" name="radius" value="5"><span>5 กม.</span></label><label class="toggle"><input type="radio" name="radius" value="10"><span>10 กม.</span></label><label class="toggle"><input type="radio" name="radius" value="0"><span>ทุกระยะ</span></label></div></fieldset>
+      <button type="button" class="text-button" id="clear-area">กลับไปดูทุกพื้นที่</button>
+    </div>
+    <div class="where-quick">
+      <button type="button" class="where-option" id="locate"><span data-icon="locate"></span><span><strong>ใกล้ฉัน</strong><small>ใช้ตำแหน่งปัจจุบันของเครื่อง</small></span></button>
+      <button type="button" class="where-option" id="pick-map-point"><span data-icon="map"></span><span><strong>เลือกบนแผนที่</strong><small>เลื่อนแผนที่ให้ตรงจุดที่อยากไป</small></span></button>
+    </div>
+    <label class="form-field"><span>จังหวัด</span><select id="province"><option value="all">ทุกพื้นที่</option><option value="bangkok">กรุงเทพมหานคร</option><option value="nonthaburi">นนทบุรี</option><option value="pathumthani">ปทุมธานี</option><option value="samutprakan">สมุทรปราการ</option><option value="samutsakhon">สมุทรสาคร</option><option value="nakhonpathom">นครปฐม</option><option value="chiangmai">เชียงใหม่</option><option value="nakhonratchasima">นครราชสีมา</option><option value="udonthani">อุดรธานี</option><option value="ayutthaya">พระนครศรีอยุธยา</option><option value="rayong">ระยอง</option><option value="phetchaburi">เพชรบุรี</option><option value="songkhla">สงขลา</option></select></label>
+    <p class="small where-tip">อยากค้นหารอบสถานีรถไฟฟ้า? พิมพ์ชื่อสถานีในช่องค้นหาด้านบน แล้วกดปุ่ม “ค้นหารอบ”</p>
+  </dialog>
+  <!-- Everything that is not a quick toggle lives here; changes apply at once and the button shows the live count. -->
+  <dialog id="filter-dialog" class="filter-dialog sheet" aria-labelledby="filter-title">
+    <div class="sheet-head"><h2 id="filter-title">ตัวกรอง</h2><button type="button" class="icon-button" id="close-filters" aria-label="ปิดตัวกรอง">×</button></div>
+    <div class="sheet-body">
+      <section class="sheet-section" id="sport-filters" aria-labelledby="sport-filter-label" hidden><h3 id="sport-filter-label">ต้องมีสนามหรือลู่</h3><div class="sport-chips" id="sport-filter-list"></div></section>
+      <fieldset class="sheet-section"><legend>สิ่งอำนวยความสะดวก</legend><div class="facility-options" id="facility-filter-list"></div><p class="small">เลือกได้หลายข้อ แสดงเฉพาะที่ยืนยันว่ามีครบทุกข้อ</p></fieldset>
+      <fieldset class="sheet-section" id="fee-filter"><legend>ค่าเข้า</legend><div class="seg-row"><label class="toggle"><input type="radio" name="fee" value="all"><span>ทุกแบบ</span></label><label class="toggle"><input type="radio" name="fee" value="free"><span>เข้าฟรี</span></label><label class="toggle"><input type="radio" name="fee" value="paid"><span>มีค่าใช้จ่าย / สมาชิก</span></label><label class="toggle"><input type="radio" name="fee" value="unknown"><span>ยังไม่ยืนยันค่าเข้า</span></label></div></fieldset>
+      <div class="sheet-section"><h3>ภาพ</h3><label class="toggle"><input type="checkbox" id="photo-only"><span>มีภาพถ่ายจริง</span></label></div>
+      <div class="sheet-section"><label class="form-field"><span>วางแผนไปวันและเวลา (ประเทศไทย)</span><input id="visit-at" type="datetime-local"></label><button type="button" class="text-button" id="visit-now">กลับมาใช้เวลาตอนนี้</button><p id="visit-summary" class="small" aria-live="polite">สถานะเปิดอิงตารางที่เผยแพร่ ไม่ใช่การยืนยันหน้างาน</p></div>
+    </div>
+    <div class="sheet-foot"><button type="button" class="btn btn-ghost" id="clear-filters">ล้างตัวกรอง</button><button type="button" class="btn btn-primary" id="apply-filters">แสดง <span id="filter-result-count"></span> แห่ง</button></div>
+  </dialog>
+  <dialog id="info-dialog"><button class="dialog-close icon-button" aria-label="ปิดหน้าต่าง" id="close-info">×</button><div id="info-content"></div></dialog>
+  <div id="toast" class="toast" role="status" hidden></div>
+  <noscript><p class="noscript">กรุณาเปิด JavaScript เพื่อใช้งานการค้นหาและแผนที่</p></noscript>
+</body>
+</html>

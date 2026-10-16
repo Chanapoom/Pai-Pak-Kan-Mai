@@ -1,0 +1,28 @@
+{
+  "name": "ไปพักกันไหม — วันนี้ไปพักที่ไหนดี",
+  "short_name": "ไปพักกันไหม",
+  "lang": "th",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#faf3e5",
+  "theme_color": "#faf3e5",
+  "description": "ไปพักกันไหม ช่วยเลือกสวน อุทยาน ศูนย์กีฬา และยิมทั่วไทย ดูเวลาเปิด การเดินทาง และที่มาของข้อมูล ใช้ฟรี ไม่ต้องสมัครสมาชิก",
+  "icons": [
+    {
+      "src": "brand/icon-128.png",
+      "sizes": "128x128",
+      "type": "image/png"
+    },
+    {
+      "src": "brand/icon-256.png",
+      "sizes": "256x256",
+      "type": "image/png"
+    },
+    {
+      "src": "brand/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Runner in the same flat-colour, thick black outline style as park.png and gym.png.
+       Each limb is drawn twice: a wide black stroke for the outline, then a narrower colour stroke on top. -->
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M4 60h44M53 60h6" stroke="#000" stroke-width="3"/>
+    <!-- back arm and back leg, a shade darker -->
+    <path d="M35 22l-10 4-6 6" stroke="#000" stroke-width="9"/>
+    <path d="M35 22l-10 4-6 6" stroke="#d9806a" stroke-width="4.4"/>
+    <path d="M28 38l-8 9H9" stroke="#000" stroke-width="9"/>
+    <path d="M28 38l-8 9H9" stroke="#d9806a" stroke-width="4.4"/>
+    <path d="M9 47l-4 2" stroke="#000" stroke-width="9.5"/>
+    <path d="M9 47l-4 2" stroke="#2b2f36" stroke-width="5"/>
+    <!-- torso (shirt) and shorts -->
+    <path d="M36 20l-7 15" stroke="#000" stroke-width="15"/>
+    <path d="M36 20l-7 15" stroke="#2d8cf0" stroke-width="10.4"/>
+    <path d="M30 34l-2 4" stroke="#000" stroke-width="15"/>
+    <path d="M30 34l-2 4" stroke="#2b2f36" stroke-width="10.4"/>
+    <!-- front leg and front arm -->
+    <path d="M29 37l11 7-2 11" stroke="#000" stroke-width="9"/>
+    <path d="M29 37l11 7-2 11" stroke="#f4a28c" stroke-width="4.4"/>
+    <path d="M38 55h7" stroke="#000" stroke-width="9.5"/>
+    <path d="M38 55h7" stroke="#2b2f36" stroke-width="5"/>
+    <path d="M36 22l9 6 5-8" stroke="#000" stroke-width="9"/>
+    <path d="M36 22l9 6 5-8" stroke="#f4a28c" stroke-width="4.4"/>
+  </g>
+  <!-- head with a cap of hair -->
+  <circle cx="41" cy="9.5" r="6.6" fill="#f4a28c" stroke="#000" stroke-width="3"/>
+  <path d="M34.6 8.2a6.6 6.6 0 0 1 12.8.2c-3.4.2-6.2-.8-8-2.6-1.2 1.4-2.8 2.2-4.8 2.4z" fill="#2b2f36" stroke="#000" stroke-width="2.2" stroke-linejoin="round"/>
+</svg>
