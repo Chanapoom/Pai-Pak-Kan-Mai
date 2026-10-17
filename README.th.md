@@ -2,7 +2,7 @@
 
 เว็บแผนที่สองภาษา (ไทย / อังกฤษ) ช่วยเลือกว่าวันนี้จะไปพักหรือออกกำลังกายที่ไหน ทั้งสวนสาธารณะ อุทยาน ศูนย์กีฬา และยิมทั่วไทย ใช้ฟรี ไม่ต้องสมัครสมาชิก
 
-English: [README.md](README.md)
+เว็บจริง: **https://pai-pak-kan-mai.pages.dev** · English: [README.md](README.md)
 
 ## ความสามารถ
 
@@ -51,7 +51,7 @@ npm test    # รันเทสต์ทั้งหมด
 
 - นำโฟลเดอร์ `dist/` ขึ้นโฮสต์ไฟล์ static ที่ใช้ HTTPS เช่น Cloudflare Pages (Build command: ว่าง, Output directory: `dist`)
 - มีหน้า `404.html`, `robots.txt`, `site.webmanifest` และภาพตัวอย่างเวลาแชร์ลิงก์ `brand/og-image.jpg` พร้อมแล้ว
-- เมื่อได้โดเมน ใส่ `og:url` และเปลี่ยน `og:image` เป็น URL เต็มใน `dist/index.html`
+- เว็บอยู่บน Cloudflare Pages ทุกครั้งที่ push ขึ้น `main` เว็บจะอัปเดตเอง ถ้าย้ายไปโดเมนของตัวเอง ให้แก้ `og:url`, `og:image` และ `canonical` ใน `dist/index.html`
 - แผนที่ฐานใช้ tile ของ OpenStreetMap เหมาะกับปริมาณผู้ใช้ไม่มาก ถ้าผู้ใช้เพิ่มมาก ให้เปลี่ยนไปใช้ผู้ให้บริการ tile ที่รองรับงานจริง ตาม[นโยบายของ OSM](https://operations.osmfoundation.org/policies/tiles/)
 
 ## สถิติผู้ใช้

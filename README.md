@@ -2,7 +2,7 @@
 
 **Where to unwind today?** A bilingual (Thai / English) map that helps people in Thailand decide where to rest or exercise: parks, national and forest parks, sports grounds and gyms. It is free to use and needs no sign-up.
 
-- Live site: _not deployed yet_
+- Live site: **https://pai-pak-kan-mai.pages.dev**
 - ภาษาไทย: [README.th.md](README.th.md) (Thai guide: features, running, updating data, deploying)
 
 ![Pai Pak Kan Mai on a desktop: the pick panel on the left and clustered places on a map of Thailand](docs/screenshot-desktop.jpg)
@@ -57,7 +57,7 @@ docs/            screenshots for this README
 
 ## Deploying
 
-The site is static. Any static host works; Cloudflare Pages is recommended (build command: none, output directory: `dist`). After the domain is known, set `og:url` and an absolute `og:image` in `dist/index.html`. See the deploy section of [README.th.md](README.th.md) for details.
+The site is static. Any static host works; Cloudflare Pages is recommended (build command: none, output directory: `dist`). It is live on Cloudflare Pages; every push to `main` redeploys it. If the site moves to its own domain, update `og:url`, `og:image` and the canonical link in `dist/index.html`. See the deploy section of [README.th.md](README.th.md) for details.
 
 ## Visitor statistics
 
